@@ -1,5 +1,6 @@
 # Java
 *.class
+target/
 
 # package Files
 *.jar
