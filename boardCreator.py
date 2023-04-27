@@ -11,7 +11,6 @@ def add_edge(start, end, transportation):
     if end not in graph.keys():
         graph[end] = []
     graph[start].append((end, transportation))
-    graph[end].append((start, transportation))
 
 
 if __name__ == '__main__':
