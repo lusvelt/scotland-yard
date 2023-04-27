@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Hider extends Player {
 
-    private static final int TAXI_TICKETS = 4;
-    private static final int BUS_TICKETS = 3;
-    private static final int UNDERGROUND_TICKETS = 3;
+    private static final int TAXI_TICKETS = 24;
+    private static final int BUS_TICKETS = 24;
+    private static final int UNDERGROUND_TICKETS = 24;
 
     private int doubleMoveCards;
     private int blackFareTickets;

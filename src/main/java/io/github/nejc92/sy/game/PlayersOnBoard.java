@@ -13,9 +13,11 @@ public class PlayersOnBoard {
     private static final int NUMBER_OF_PLAYERS = 6;
     private static final int HIDERS_INDEX = 0;
     private static final int SKIP_HIDER = 1;
-    private static final List<Integer> POSSIBLE_STARTING_POSITIONS = new ArrayList<>(
-            Arrays.asList(13, 26, 34, 50, 53, 62, 91, 94, 103, 112, 117, 132, 138, 141, 155, 174, 197, 198));
-    private static final double[] DISTANCE_TO_HIDER_PROBABILITIES = {0.196, 0.671, 0.540, 0.384, 0.196};
+    private static final List<Integer> POSSIBLE_HIDER_STARTING_POSITIONS = new ArrayList<>(
+            Arrays.asList(16, 29, 46, 59, 78, 85, 94, 117, 122, 139, 154, 161, 199));
+    private static final List<Integer> POSSIBLE_SEEKER_STARTING_POSITIONS = new ArrayList<>(
+            Arrays.asList(13, 18, 37, 44, 49, 74, 77, 88, 92, 100, 106, 123, 127, 146, 171, 192));
+    private static final double[] DISTANCE_TO_HIDER_PROBABILITIES = {0.196, 0.671, 0.540, 0.384, 0.196}; // Heuristic about Mr.X being near or far away from detectives
 
     private final Board board;
     private final Player[] players;
@@ -61,13 +63,23 @@ public class PlayersOnBoard {
     }
 
     private static int[] generateRandomPlayersPositions(int numberOfPlayers) {
-        Collections.shuffle(POSSIBLE_STARTING_POSITIONS);
-        return IntStream.range(0, numberOfPlayers)
-                .map(POSSIBLE_STARTING_POSITIONS::get).toArray();
+        Collections.shuffle(POSSIBLE_SEEKER_STARTING_POSITIONS);
+        Collections.shuffle(POSSIBLE_HIDER_STARTING_POSITIONS);
+
+        int hiderPosition = POSSIBLE_HIDER_STARTING_POSITIONS.get(0);
+
+        int[] seekerPositions = IntStream.range(1, numberOfPlayers)
+            .map(POSSIBLE_SEEKER_STARTING_POSITIONS::get).toArray();
+        
+        int[] playersPositions = new int[seekerPositions.length + 1];
+        playersPositions[0] = hiderPosition;
+        System.arraycopy(seekerPositions, 0, playersPositions, 1, seekerPositions.length);
+        
+        return playersPositions;
     }
 
     private static List<Integer> calculateInitialHidersPossibleLocations(int[] playersPositions) {
-        List<Integer> hidersPossibleLocations = new ArrayList<>(POSSIBLE_STARTING_POSITIONS);
+        List<Integer> hidersPossibleLocations = new ArrayList<>(POSSIBLE_HIDER_STARTING_POSITIONS);
         hidersPossibleLocations.removeAll(getSeekersPositions(playersPositions));
         return hidersPossibleLocations;
     }

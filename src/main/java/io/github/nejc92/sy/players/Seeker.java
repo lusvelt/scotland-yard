@@ -8,10 +8,9 @@ import io.github.nejc92.sy.strategies.Playouts;
 
 public class Seeker extends Player {
 
-    private static final int TAXI_TICKETS = 10;
+    private static final int TAXI_TICKETS = 11;
     private static final int BUS_TICKETS = 8;
     private static final int UNDERGROUND_TICKETS = 4;
-    private static final double COALITION_REDUCTION_PARAMETER = 0.25;
 
     public enum Color {
         BLACK, BLUE, YELLOW, RED, GREEN
