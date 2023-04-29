@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 public class Board {
 
-    private static final String BOARD_FILE_NAME = "src/main/resources/board_file.xml";
-    private static final String HIDERS_DISTANCES_FILE_NAME = "src/main/resources/hiders_distances_file.xml";
-    private static final String SEEKERS_DISTANCES_FILE_NAME = "src/main/resources/seekers_distances_file.xml";
+    private static final String BOARD_FILE_NAME = "src/main/resources_ita/board_file.xml";
+    private static final String HIDERS_DISTANCES_FILE_NAME = "src/main/resources_ita/hiders_distances_file.xml";
+    private static final String SEEKERS_DISTANCES_FILE_NAME = "src/main/resources_ita/seekers_distances_file.xml";
 
     private final List<List<Action>> positionsActions;
     private final List<List<Integer>> hidersDistances;
